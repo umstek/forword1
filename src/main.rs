@@ -11,10 +11,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let listen_addr = env::var("LISTEN_ADDR").unwrap_or("127.0.0.1:12369".to_string());
     let send_addr = env::var("SEND_ADDR").unwrap_or("127.0.0.1:12368".to_string());
 
+    let listener = TcpListener::bind(listen_addr).await?;
     loop {
-        let listener = TcpListener::bind(listen_addr.clone()).await?;
         let (mut downstream, _) = listener.accept().await?;
-
         let mut upstream = TcpStream::connect(send_addr.clone()).await?;
 
         if copy_bidirectional(&mut upstream, &mut downstream)
