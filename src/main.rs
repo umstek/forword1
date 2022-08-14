@@ -17,12 +17,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let listen_addr = env::var("LISTEN_ADDR").unwrap_or("127.0.0.1:12369".to_string());
     let send_addr = env::var("SEND_ADDR").unwrap_or("127.0.0.1:12368".to_string());
 
-    let listener = TcpListener::bind(listen_addr).await?;
-    println!("Listening on {}", send_addr);
+    let listener = TcpListener::bind(listen_addr.clone()).await?;
+    println!("Listening on {}", listen_addr);
     loop {
         let (mut downstream, client_addr) = listener.accept().await?;
-        println!("Connected to {}", client_addr);
+        println!("Connected client {}", client_addr);
         let mut upstream = TcpStream::connect(send_addr.clone()).await?;
+        println!("Forwarding to {}", send_addr);
         spawn(async move {
             if copy_bidirectional(&mut upstream, &mut downstream)
                 .await
