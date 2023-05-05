@@ -1,7 +1,7 @@
 # forward1
 
 A dead simple TCP MITM proxy for testing.  
-Doesn't log, doesn't print. Just sit in the middle and exchange data.
+Exchange data, and print a comprehensive log of everything exchanged.
 
 ## Usage
 
