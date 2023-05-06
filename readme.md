@@ -12,3 +12,7 @@ Then connect your client(s) to `LISTEN_ADDR`.
 When your client connects, `forward1` will connect to `SEND_ADDR` and exchange data. It will disconnect when the client does.
 
 You can kill `forward1` to simulate a disconnection.
+
+## Note
+
+Some code written with the help of Bing AI/ChatGPT etc.
