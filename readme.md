@@ -1,5 +1,7 @@
 # forward1
 
+[![build](https://github.com/umstek/forward1/actions/workflows/build.yml/badge.svg)](https://github.com/umstek/forward1/actions/workflows/build.yml)
+
 A dead simple TCP MITM proxy for testing.  
 Exchange data, and print a comprehensive log of everything exchanged.
 
