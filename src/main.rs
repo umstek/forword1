@@ -30,8 +30,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv().ok();
     env_logger::builder().format_timestamp_nanos().init();
 
-    let listen_addr = env::var("LISTEN_ADDR").unwrap_or("0.0.0.0:12369".to_string());
-    let send_addr = env::var("SEND_ADDR").unwrap_or("127.0.0.1:12368".to_string());
+    let listen_addr = env::var("LISTEN_ADDR").unwrap_or_else(|_| "0.0.0.0:12369".to_string());
+    let send_addr = env::var("SEND_ADDR").unwrap_or_else(|_| "127.0.0.1:12368".to_string());
 
     let listener = TcpListener::bind(listen_addr.clone()).await?;
     info!("Listening on {}", listen_addr);
